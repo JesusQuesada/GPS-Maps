@@ -1,15 +1,19 @@
 package com.example.jquesadaabeijon.otromapa;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Looper;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -21,6 +25,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
+    public Intent intento;
+    private final static int codigo = 0;
+    private TextView reciboDato;
 
     private GoogleMap mMap;
 
@@ -42,6 +50,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        String salutation = "Hola";
+        intento = new Intent(MapsActivity.this,QuickResponse.class);
+        intento.putExtra("salutation", salutation);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                // inicio la segunda activity y espero un resultado devuelto
+                // identifico la llamada con un codigo, en este caso 0
+                startActivityForResult(intento, codigo );
+            }
+        });
 
         textViewGPS = (TextView) findViewById(R.id.lat);
         textViewDist = (TextView) findViewById(R.id.dist);
@@ -126,5 +150,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //LatLng tesoro = new LatLng(42.263044, -8.802236);
         mMap.addMarker(new MarkerOptions().position(tesoro).title("Marca de Tesoro"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(tesoro));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // Comprobamos si el resultado de la segunda actividad es "RESULT_OK".
+        if (resultCode == RESULT_OK) {
+            // Comprobamos el codigo de nuestra llamada
+            if (requestCode == codigo) {
+                // Recojemos el dato que viene en el Intent (se pasa por parámetro con el nombre de data)
+                // Rellenamos el TextView
+                reciboDato.setText(data.getExtras().getString("retorno"));
+            }
+        }
     }
 }
