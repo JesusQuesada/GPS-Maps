@@ -17,33 +17,44 @@
 
     <TextView
         android:id="@+id/lat"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_width="236dp"
+        android:layout_height="18dp"
         android:layout_marginTop="436dp"
         android:text="Lat/long"
         app:layout_constraintTop_toTopOf="@+id/map"
-        tools:layout_editor_absoluteX="0dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/dist"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_width="236dp"
+        android:layout_height="19dp"
         android:layout_marginTop="472dp"
         android:text="Distancia"
         app:layout_constraintTop_toTopOf="@+id/map"
-        tools:layout_editor_absoluteX="0dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="66dp"
-        android:layout_height="57dp"
-        android:clickable="true"
-        app:backgroundTint="@color/common_google_signin_btn_text_light_pressed"
-        app:srcCompat="@android:drawable/ic_menu_camera"
-        tools:layout_editor_absoluteX="311dp"
-        tools:layout_editor_absoluteY="438dp"
-        tools:ignore="MissingConstraints" />
+    <LinearLayout
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/dist"
+        app:layout_constraintTop_toBottomOf="@+id/map">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            app:backgroundTint="@color/colorPrimary"
+            app:srcCompat="@android:drawable/ic_menu_camera"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="237dp"
+            tools:layout_editor_absoluteY="455dp" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
