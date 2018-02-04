@@ -38,7 +38,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     // coordenadas del tesoro
     private LatLng tesoro;
     private Location tesoroLoc;
-    private double lat=42.263044, lng=-8.802236;
+    private double lat=42.237436, lng=-8.714226;
     private static final long MIN_CAMBIO_DISTANCIA_PARA_UPDATES = (long) 5; // 5 metro
     private static final long MIN_TIEMPO_ENTRE_UPDATES = 5000; // 5 sg
 
